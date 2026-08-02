@@ -1,0 +1,23 @@
+{"_type":"skills","_id":"skill-html","name":"HTML5","category":"frontend","proficiency":"advanced","percentage":95,"yearsOfExperience":1,"color":"#E34F26"}
+{"_type":"skills","_id":"skill-css","name":"CSS3","category":"frontend","proficiency":"advanced","percentage":92,"yearsOfExperience":1,"color":"#1572B6"}
+{"_type":"skills","_id":"skill-javascript","name":"JavaScript","category":"frontend","proficiency":"intermediate","percentage":82,"yearsOfExperience":1,"color":"#F7DF1E"}
+{"_type":"skills","_id":"skill-typescript","name":"TypeScript","category":"frontend","proficiency":"intermediate","percentage":75,"yearsOfExperience":1,"color":"#3178C6"}
+{"_type":"skills","_id":"skill-react","name":"React.js","category":"frontend","proficiency":"advanced","percentage":88,"yearsOfExperience":1,"color":"#61DAFB"}
+{"_type":"skills","_id":"skill-nextjs","name":"Next.js","category":"frontend","proficiency":"advanced","percentage":85,"yearsOfExperience":1,"color":"#000000"}
+{"_type":"skills","_id":"skill-tailwindcss","name":"Tailwind CSS","category":"frontend","proficiency":"advanced","percentage":90,"yearsOfExperience":1,"color":"#06B6D4"}
+{"_type":"skills","_id":"skill-framer-motion","name":"Framer Motion","category":"frontend","proficiency":"intermediate","percentage":75,"yearsOfExperience":1,"color":"#0055FF"}
+{"_type":"skills","_id":"skill-gsap","name":"GSAP","category":"frontend","proficiency":"intermediate","percentage":70,"yearsOfExperience":1,"color":"#88CE02"}
+{"_type":"skills","_id":"skill-sanity","name":"Sanity CMS","category":"frontend","proficiency":"intermediate","percentage":78,"yearsOfExperience":1,"color":"#F03E2F"}
+{"_type":"skills","_id":"skill-responsive-design","name":"Responsive Design","category":"design","proficiency":"advanced","percentage":94,"yearsOfExperience":1,"color":"#2563EB"}
+{"_type":"skills","_id":"skill-email-templates","name":"Email Template Development","category":"frontend","proficiency":"advanced","percentage":88,"yearsOfExperience":1,"color":"#EA4335"}
+{"_type":"skills","_id":"skill-git","name":"Git","category":"tools","proficiency":"intermediate","percentage":82,"yearsOfExperience":1,"color":"#F05032"}
+{"_type":"skills","_id":"skill-github","name":"GitHub","category":"tools","proficiency":"intermediate","percentage":85,"yearsOfExperience":1,"color":"#181717"}
+{"_type":"skills","_id":"skill-filezilla","name":"FileZilla","category":"tools","proficiency":"advanced","percentage":85,"yearsOfExperience":1,"color":"#BF0000"}
+{"_type":"skills","_id":"skill-chrome-devtools","name":"Chrome DevTools","category":"tools","proficiency":"advanced","percentage":86,"yearsOfExperience":1,"color":"#4285F4"}
+{"_type":"skills","_id":"skill-sql","name":"SQL","category":"database","proficiency":"beginner","percentage":60,"yearsOfExperience":1,"color":"#336791"}
+{"_type":"skills","_id":"skill-ui-design","name":"UI Design","category":"design","proficiency":"intermediate","percentage":80,"yearsOfExperience":1,"color":"#8B5CF6"}
+{"_type":"skills","_id":"skill-debugging","name":"Debugging","category":"soft-skills","proficiency":"advanced","percentage":88,"yearsOfExperience":1,"color":"#F97316"}
+{"_type":"skills","_id":"skill-problem-solving","name":"Problem Solving","category":"soft-skills","proficiency":"advanced","percentage":90,"yearsOfExperience":1,"color":"#10B981"}
+{"_type":"skills","_id":"skill-communication","name":"Communication","category":"soft-skills","proficiency":"advanced","percentage":85,"yearsOfExperience":1,"color":"#0EA5E9"}
+{"_type":"skills","_id":"skill-teamwork","name":"Collaboration","category":"soft-skills","proficiency":"advanced","percentage":84,"yearsOfExperience":1,"color":"#A855F7"}
+{"_type":"skills","_id":"skill-time-management","name":"Time Management","category":"soft-skills","proficiency":"advanced","percentage":86,"yearsOfExperience":1,"color":"#14B8A6"}
