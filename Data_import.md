@@ -95,3 +95,19 @@ The document already exists in your dataset. Delete the existing document or ove
 - Ensure every object has a unique `_id`.
 - Verify that the dataset name is correct before importing.
 - Always validate your `.ndjson` file before importing to avoid parsing errors.
+
+command
+npx sanity dataset import ./achievements.ndjson --dataset development
+npx sanity dataset import ./blog.ndjson --dataset development
+npx sanity dataset import ./certification.ndjson --dataset development
+npx sanity dataset import ./contact.ndjson --dataset development
+npx sanity dataset import ./education.ndjson --dataset development
+npx sanity dataset import ./experience.ndjson --dataset development
+npx sanity dataset import ./navigation.ndjson --dataset development
+npx sanity dataset import ./profile-with-animation.ndjson --dataset development
+npx sanity dataset import ./profile.ndjson --dataset development
+npx sanity dataset import ./projects.ndjson --dataset development
+npx sanity dataset import ./services.ndjson --dataset development
+npx sanity dataset import ./siteSetting.ndjson --dataset development
+npx sanity dataset import ./skills.ndjson --dataset development
+npx sanity dataset import ./testimonial.ndjson --dataset development

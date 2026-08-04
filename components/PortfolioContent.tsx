@@ -1,4 +1,4 @@
-import HeroSection from "./sections/hero-section";
+import HeroSection from "./sections/HeroSection";
 
 async function PortfolioContent() {
   return (

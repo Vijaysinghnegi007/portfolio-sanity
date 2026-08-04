@@ -1,4 +1,4 @@
-import type { SchemaTypeDefinition } from "sanity";
+import { type SchemaTypeDefinition } from "sanity";
 import achievements from "./achievements";
 import blog from "./blog";
 import certification from "./certification";
@@ -12,7 +12,6 @@ import services from "./services";
 import siteSetting from "./siteSetting";
 import skills from "./skills";
 import testimonial from "./testimonial";
-
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     profile,

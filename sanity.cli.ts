@@ -8,11 +8,14 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
 
 export default defineCliConfig({
-  api: { projectId, dataset },
+  api: {
+    projectId,
+    dataset,
+  },
   typegen: {
-    path: "./**/*.{ts,tsx,js,jsx}",
-    schema: "schema.json",
-    generates: "./sanity.types.ts",
-    overloadClientMethods: true,
+    path: "./**/*.{ts,tsx,js,jsx}", // files to scan for GROQ queries
+    schema: "schema.json", // extracted schema file
+    generates: "./sanity.types.ts", // output file
+    overloadClientMethods: true, // auto-type sanity client responses
   },
 });
