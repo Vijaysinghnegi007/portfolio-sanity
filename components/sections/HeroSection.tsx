@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { sanityFetch } from "@/sanity/lib/live";
 import { HERO_QUERY } from "@/sanity/lib/queries";
 import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
@@ -8,7 +7,6 @@ import { ProfileImage } from "./ProfileImage";
 
 async function HeroSection() {
   const { data: profile } = await sanityFetch({ query: HERO_QUERY });
-  console.log("HeroSection profile data:", profile);
 
   if (!profile) {
     return null;
@@ -18,7 +16,7 @@ async function HeroSection() {
       id="home"
       className="relative min-h-screen flex items-center justify-center px-6  overflow-hidden"
     >
-      <BackgroundRippleEffect />
+      {/* <BackgroundRippleEffect /> */}
 
       <div className="relative z-10 container mx-auto max-w-6xl">
         <div className="@container">

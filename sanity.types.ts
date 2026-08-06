@@ -747,10 +747,258 @@ export type HERO_QUERY_RESULT =
     }
   | null;
 
+// Source: sanity/lib/queries.ts
+// Variable: ABOUT_QUERY
+// Query: *[_id == "singleton-profile"][0]{  firstName,  lastName,  fullBio,  yearsOfExperience,  stats,  email,  phone,  location}
+export type ABOUT_QUERY_RESULT =
+  | {
+      firstName: null;
+      lastName: null;
+      fullBio: null;
+      yearsOfExperience: null;
+      stats: null;
+      email: null;
+      phone: null;
+      location: null;
+    }
+  | {
+      firstName: null;
+      lastName: null;
+      fullBio: null;
+      yearsOfExperience: number | null;
+      stats: null;
+      email: null;
+      phone: null;
+      location: null;
+    }
+  | {
+      firstName: null;
+      lastName: null;
+      fullBio: null;
+      yearsOfExperience: null;
+      stats: null;
+      email: null;
+      phone: null;
+      location: string | null;
+    }
+  | {
+      firstName: null;
+      lastName: null;
+      fullBio: null;
+      yearsOfExperience: null;
+      stats: null;
+      email: string | null;
+      phone: null;
+      location: null;
+    }
+  | {
+      firstName: string | null;
+      lastName: string | null;
+      fullBio: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }> | null;
+      yearsOfExperience: number | null;
+      stats: Array<{
+        label?: string;
+        value?: string;
+        _key: string;
+      }> | null;
+      email: string | null;
+      phone: string | null;
+      location: string | null;
+    }
+  | null;
+
+// Source: sanity/lib/queries.ts
+// Variable: TESTIMONIALS_QUERY
+// Query: *[_type == "testimonial" && featured == true] | order(order asc){  _id,  name,  position,  company,  testimonial,  rating,  date,  avatar,  companyLogo,  linkedinUrl}
+export type TESTIMONIALS_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  position: string | null;
+  company: string | null;
+  testimonial: string | null;
+  rating: number | null;
+  date: string | null;
+  avatar: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  companyLogo: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  linkedinUrl: string | null;
+}>;
+
+// Source: sanity/lib/queries.ts
+// Variable: SKILLS_QUERY
+// Query: *[_type == "skills"] | order(category asc, name asc){  _id,  name,  category,  proficiency,  percentage,  color}
+export type SKILLS_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  category:
+    | "ai-ml"
+    | "backend"
+    | "cloud"
+    | "database"
+    | "design"
+    | "devops"
+    | "frontend"
+    | "mobile"
+    | "other"
+    | "soft-skills"
+    | "testing"
+    | "tools"
+    | null;
+  proficiency: "advanced" | "beginner" | "expert" | "intermediate" | null;
+  percentage: number | null;
+  color: string | null;
+}>;
+
+// Source: sanity/lib/queries.ts
+// Variable: PROJECTS_QUERY
+// Query: *[_type == "projects"] | order(featured desc, order asc){  _id,  title,  tagline,  category,  coverImage,  technologies[]->{name, category},  liveUrl,  githubUrl,  featured,  order}
+export type PROJECTS_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  tagline: string | null;
+  category:
+    | "ai-ml"
+    | "api-backend"
+    | "browser-extension"
+    | "cli-tool"
+    | "desktop-app"
+    | "devops"
+    | "game"
+    | "mobile-app"
+    | "open-source"
+    | "other"
+    | "web-app"
+    | null;
+  coverImage: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  technologies: Array<{
+    name: string | null;
+    category:
+      | "ai-ml"
+      | "backend"
+      | "cloud"
+      | "database"
+      | "design"
+      | "devops"
+      | "frontend"
+      | "mobile"
+      | "other"
+      | "soft-skills"
+      | "testing"
+      | "tools"
+      | null;
+  }> | null;
+  liveUrl: string | null;
+  githubUrl: string | null;
+  featured: boolean | null;
+  order: number | null;
+}>;
+
+// Source: sanity/lib/queries.ts
+// Variable: EXPERIENCE_QUERY
+// Query: *[_type == "experience"] | order(startDate desc){  company,  position,  employmentType,  location,  startDate,  endDate,  current,  description,  responsibilities,  achievements,  technologies[]->{name, category},  companyLogo,  companyWebsite}
+export type EXPERIENCE_QUERY_RESULT = Array<{
+  company: string | null;
+  position: string | null;
+  employmentType:
+    "contract" | "freelance" | "full-time" | "internship" | "part-time" | null;
+  location: string | null;
+  startDate: string | null;
+  endDate: string | null;
+  current: boolean | null;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  responsibilities: Array<string> | null;
+  achievements: Array<string> | null;
+  technologies: Array<{
+    name: string | null;
+    category:
+      | "ai-ml"
+      | "backend"
+      | "cloud"
+      | "database"
+      | "design"
+      | "devops"
+      | "frontend"
+      | "mobile"
+      | "other"
+      | "soft-skills"
+      | "testing"
+      | "tools"
+      | null;
+  }> | null;
+  companyLogo: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  companyWebsite: string | null;
+}>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_id == "singleton-profile"][0]{\n  firstName,\n  lastName,\n  headline,\n  headlineStaticText,\n  headlineAnimatedWords,\n  headlineAnimationDuration,\n  shortBio,\n  email,\n  phone,\n  location,\n  availability,\n  socialLinks,\n  yearsOfExperience,\n  profileImage\n}': HERO_QUERY_RESULT;
+    '*[_id == "singleton-profile"][0]{\n  firstName,\n  lastName,\n  fullBio,\n  yearsOfExperience,\n  stats,\n  email,\n  phone,\n  location\n}': ABOUT_QUERY_RESULT;
+    '*[_type == "testimonial" && featured == true] | order(order asc){\n  _id,\n  name,\n  position,\n  company,\n  testimonial,\n  rating,\n  date,\n  avatar,\n  companyLogo,\n  linkedinUrl\n}': TESTIMONIALS_QUERY_RESULT;
+    '*[_type == "skills"] | order(category asc, name asc){\n  _id,\n  name,\n  category,\n  proficiency,\n  percentage,\n  color\n}': SKILLS_QUERY_RESULT;
+    '*[_type == "projects"] | order(featured desc, order asc){\n  _id,\n  title,\n  tagline,\n  category,\n  coverImage,\n  technologies[]->{name, category},\n  liveUrl,\n  githubUrl,\n  featured,\n  order\n}': PROJECTS_QUERY_RESULT;
+    '*[_type == "experience"] | order(startDate desc){\n  company,\n  position,\n  employmentType,\n  location,\n  startDate,\n  endDate,\n  current,\n  description,\n  responsibilities,\n  achievements,\n  technologies[]->{name, category},\n  companyLogo,\n  companyWebsite\n}': EXPERIENCE_QUERY_RESULT;
   }
 }
