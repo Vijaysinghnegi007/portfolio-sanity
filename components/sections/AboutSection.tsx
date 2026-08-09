@@ -9,7 +9,7 @@ async function AboutSection() {
     return null;
   }
 
-  console.log("AboutSection aboutData:", aboutData);
+  // console.log("AboutSection aboutData:", aboutData);
   return (
     <section id="about" className="py-20 px-6">
       <div className="container mx-auto max-w-4xl">

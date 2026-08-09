@@ -11,7 +11,7 @@ export function ProfileImage({
   firstName,
   lastName,
 }: ProfileImageProps) {
-  console.log("ProfileImage props:", { imageUrl, firstName, lastName });
+  // console.log("ProfileImage props:", { imageUrl, firstName, lastName });
   return (
     <div className="group relative mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-2xl border-4 border-primary/20 sm:max-w-sm md:max-w-md lg:max-w-lg ">
       <Image
