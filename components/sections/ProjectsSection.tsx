@@ -1,4 +1,3 @@
-import React from "react";
 import { sanityFetch } from "@/sanity/lib/live";
 import { TESTIMONIALS_QUERY } from "@/sanity/lib/queries";
 async function ProjectsSection() {

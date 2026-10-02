@@ -12,40 +12,10 @@ const CATEGORY_META: Record<string, { label: string; description: string }> = {
     description:
       "Building responsive, accessible, and performant interfaces with modern frameworks like React and Next.js, grounded in clean semantics and a mobile-first mindset.",
   },
-  backend: {
-    label: "Backend",
-    description:
-      "Designing reliable APIs and server-side logic that power feature-rich applications with security, performance, and scalability in mind.",
-  },
-  "ai-ml": {
-    label: "AI / ML",
-    description:
-      "Integrating machine learning models and AI capabilities to add intelligence, automation, and personalization to digital products.",
-  },
-  devops: {
-    label: "DevOps",
-    description:
-      "Streamlining development with automation, CI/CD pipelines, containerization, and infrastructure-as-code best practices.",
-  },
   database: {
     label: "Database",
     description:
       "Modeling and querying structured data to keep applications fast, consistent, and easy to maintain over time.",
-  },
-  mobile: {
-    label: "Mobile",
-    description:
-      "Crafting native-feeling mobile experiences with responsive patterns and platform-aware interaction design.",
-  },
-  cloud: {
-    label: "Cloud",
-    description:
-      "Deploying and managing applications on cloud platforms with an emphasis on reliability, monitoring, and cost-efficiency.",
-  },
-  testing: {
-    label: "Testing",
-    description:
-      "Writing and running tests that keep codebases stable, catching regressions before they ever reach real users.",
   },
   design: {
     label: "Design",
@@ -61,11 +31,6 @@ const CATEGORY_META: Record<string, { label: string; description: string }> = {
     label: "Soft Skills",
     description:
       "Communicating clearly, collaborating effectively, and solving problems — the human side of shipping great products.",
-  },
-  other: {
-    label: "Other",
-    description:
-      "A growing collection of skills and interests that don't fit neatly into a single category.",
   },
 };
 

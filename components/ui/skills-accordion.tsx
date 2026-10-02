@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { ArrowRight } from "lucide-react";
 
-export interface SkillItem {
+export interface Skill {
   name: string;
   percentage?: number;
   color?: string;
@@ -14,116 +18,154 @@ export interface SkillCategory {
   id: string;
   title: string;
   description: string;
-  skills: SkillItem[];
+  skills: Skill[];
 }
 
-export function SkillsAccordion({
-  categories,
-}: {
+interface SkillsAccordionProps {
   categories: SkillCategory[];
-}) {
-  const [activeId, setActiveId] = useState<string | null>(
-    categories[0]?.id ?? null,
-  );
+}
 
-  const toggleAccordion = (id: string) => {
-    setActiveId(activeId === id ? null : id);
-  };
-
+export function SkillsAccordion({ categories }: SkillsAccordionProps) {
   return (
-    <div className="flex flex-col border-t border-border mt-8">
-      {categories.map((category) => {
-        const isOpen = activeId === category.id;
-
-        return (
-          <div
-            key={category.id}
-            className="border-b border-border w-full focus-within:ring-1 focus-within:ring-primary focus-within:ring-inset"
+    <Accordion className="w-full">
+      {categories.map((category) => (
+        <AccordionItem
+          key={category.id}
+          value={category.id}
+          className="
+            border-b
+            border-border
+            data-[state=open]:border
+            data-[state=open]:border-border
+          "
+        >
+          {/* =========================
+              ACCORDION HEADER
+          ========================== */}
+          <AccordionTrigger
+            showIcon={false}
+            className="
+              group
+              px-2
+              py-7
+              hover:no-underline
+              sm:py-9
+              md:px-3
+              md:py-10
+            "
           >
-            {/* Trigger Button Row */}
-            <button
-              onClick={() => toggleAccordion(category.id)}
-              className="w-full flex justify-between items-center py-6 sm:py-8 text-left px-2 group transition-all"
-              aria-expanded={isOpen}
-            >
-              <div className="flex items-center gap-6 sm:gap-12 md:gap-20">
-                {/* Big Numbers */}
-                <span className="font-sans text-[42px] sm:text-[64px] md:text-[80px] font-black leading-none text-muted-foreground/25 group-hover:text-primary/30 transition-all duration-300 select-none">
+            <div className="flex w-full items-center justify-between gap-6">
+              {/* Number + Title */}
+              <div className="flex min-w-0 items-center gap-8 sm:gap-12 md:gap-20">
+                {/* Number */}
+                <span
+                  className="
+                    shrink-0
+                    font-sans
+                    text-[52px]
+                    font-black
+                    leading-none
+                    tracking-tight
+                    text-muted-foreground/25
+                    transition-colors
+                    duration-300
+                    group-hover:text-muted-foreground/40
+                    sm:text-[68px]
+                    md:text-[80px]
+                  "
+                >
                   {category.id}
                 </span>
                 {/* Title */}
-                <span className="font-sans text-lg sm:text-2xl md:text-3xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
+                <span
+                  className="
+                    truncate
+                    font-sans
+                    text-xl
+                    font-bold
+                    tracking-tight
+                    text-foreground
+                    transition-colors
+                    duration-300
+                    group-hover:text-primary
+                    sm:text-2xl
+                    md:text-3xl
+                  "
+                >
                   {category.title}
                 </span>
               </div>
 
-              {/* Indicator Arrow */}
-              <div
-                className={`p-2 sm:p-3 rounded-full border border-border group-hover:bg-foreground group-hover:border-foreground group-hover:text-background text-muted-foreground transition-all duration-300 ${isOpen ? "rotate-45" : ""}`}
-              >
-                <ArrowUpRight
-                  className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "" : "group-hover:translate-x-0.5 group-hover:-translate-y-0.5"}`}
-                />
+              {/* Arrow */}
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-300 group-hover:border-foreground group-hover:bg-foreground group-hover:text-background group-data-[state=open]:rotate-90 sm:h-14 sm:w-14">
+                <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6" />
+              </span>
+            </div>
+          </AccordionTrigger>
+
+          {/* =========================
+              ACCORDION CONTENT
+          ========================== */}
+          <AccordionContent>
+            <div className=" grid grid-cols-1 gap-10 px-4 pb-10 pt-2 sm:px-12 sm:pb-12 md:grid-cols-2 md:gap-16 md:pl-48 md:pr-12">
+              {/* =========================
+                  DESCRIPTION
+              ========================== */}
+              <div className="max-w-lg">
+                <p className="text-sm leading-7 text-muted-foreground sm:text-base">
+                  {category.description}
+                </p>
               </div>
-            </button>
 
-            {/* Expanded Details Section */}
-            <AnimatePresence initial={false}>
-              {isOpen && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-                  className="overflow-hidden"
-                >
-                  <div className="pb-8 sm:pb-12 pl-14 sm:pl-30 md:pl-45 pr-4 sm:pr-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                    {/* Description */}
-                    <div className="max-w-md">
-                      <p className="text-sm sm:text-base font-light text-muted-foreground leading-relaxed">
-                        {category.description}
-                      </p>
-                    </div>
+              {/* =========================
+                  SKILLS
+              ========================== */}
+              <div>
+                <p className=" mb-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  // CORE TOOLKIT
+                </p>
 
-                    {/* Skill List */}
-                    <div className="flex flex-col gap-3">
-                      <span className="text-[10px] font-mono tracking-widest text-muted-foreground uppercase">
-                        {"// CORE TOOLKIT"}
-                      </span>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-                        {category.skills.map((skill, i) => (
-                          <li
-                            key={i}
-                            className="flex items-center justify-between gap-2.5 text-xs text-foreground py-1.5 border-b border-border/60"
-                          >
-                            <span className="flex items-center gap-2.5 min-w-0">
-                              <span
-                                className="w-2 h-2 rounded-full shrink-0"
-                                style={{
-                                  backgroundColor:
-                                    skill.color || "var(--primary)",
-                                }}
-                              />
-                              <span className="font-light truncate">
-                                {skill.name}
-                              </span>
-                            </span>
-                            {skill.percentage != null && (
-                              <span className="font-mono text-[10px] text-muted-foreground shrink-0">
-                                {skill.percentage}%
-                              </span>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
+                <div className="grid grid-cols-1 sm:grid-cols-2">
+                  {(category.skills ?? []).map((skill) => (
+                    <div
+                      key={skill.name}
+                      className="flex items-center justify-between gap-4 border-b border-border/60 py-3 pr-4"
+                    >
+                      {/* Skill name */}
+                      <div className="flex min-w-0 items-center gap-3">
+                        <span
+                          className="h-2 w-2 shrink-0 rounded-full"
+                          style={{
+                            backgroundColor: skill.color || "var(--primary)",
+                          }}
+                        />
+
+                        <span className="truncate text-xs text-foreground sm:text-sm">
+                          {skill.name}
+                        </span>
+                      </div>
+
+                      {/* Percentage */}
+                      {skill.percentage !== undefined && (
+                        <span
+                          className="
+                            shrink-0
+                            font-mono
+                            text-[10px]
+                            text-muted-foreground
+                          "
+                        >
+                          {skill.percentage}%
+                        </span>
+                      )}
                     </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        );
-      })}
-    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
   );
 }
