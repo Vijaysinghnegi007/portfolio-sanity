@@ -12,27 +12,39 @@ const CATEGORY_META: Record<string, { label: string; description: string }> = {
     description:
       "Building responsive, accessible, and performant interfaces with modern frameworks like React and Next.js, grounded in clean semantics and a mobile-first mindset.",
   },
+
   database: {
     label: "Database",
     description:
       "Modeling and querying structured data to keep applications fast, consistent, and easy to maintain over time.",
   },
+
   design: {
     label: "Design",
     description:
       "Turning ideas into polished, intuitive interfaces through UI design, design systems, and consistent visual language.",
   },
+
   tools: {
     label: "Tools",
     description:
       "Leveraging the right tools to streamline workflows, version control, debugging, and everyday development tasks.",
   },
+
   "soft-skills": {
     label: "Soft Skills",
     description:
       "Communicating clearly, collaborating effectively, and solving problems — the human side of shipping great products.",
   },
+
+  other: {
+    label: "Other",
+    description:
+      "Additional technologies and skills that support the development workflow.",
+  },
 };
+
+type Skill = SKILLS_QUERY_RESULT[number];
 
 async function SkillsSection() {
   const { data: skills } = await sanityFetch({
@@ -43,22 +55,38 @@ async function SkillsSection() {
     return null;
   }
 
-  const grouped = new Map<string, SKILLS_QUERY_RESULT>();
+  /*
+   * Sanity Live can return StegaString values.
+   * Convert the values we use for grouping into normal strings
+   * before passing them into our local data structure.
+   */
+  const grouped = new Map<string, Skill[]>();
+
   for (const skill of skills) {
-    const category = skill.category ?? "other";
+    const category = String(skill.category ?? "other");
+
+    const normalizedSkill: Skill = {
+      ...skill,
+      category: category as Skill["category"],
+      name: skill.name ? String(skill.name) : null,
+      color: skill.color ? String(skill.color) : null,
+    };
+
     const bucket = grouped.get(category) ?? [];
-    bucket.push(skill);
+
+    bucket.push(normalizedSkill);
     grouped.set(category, bucket);
   }
 
   const categories: SkillCategory[] = Array.from(grouped.entries()).map(
     ([category, items], index) => {
-      const meta = CATEGORY_META[category] ?? CATEGORY_META["other"];
+      const meta = CATEGORY_META[category] ?? CATEGORY_META.other;
 
       return {
         id: String(index + 1).padStart(2, "0"),
         title: meta.label,
         description: meta.description,
+
         skills: items.map((skill) => ({
           name: skill.name ?? "",
           percentage: skill.percentage ?? undefined,
@@ -71,16 +99,17 @@ async function SkillsSection() {
   return (
     <section
       id="skills"
-      className="bg-background py-20 flex flex-col items-center"
+      className="flex flex-col items-center bg-background py-20"
     >
-      <div className="max-w-7xl w-full mx-auto px-6 md:px-12 lg:px-20 @container">
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-12 lg:px-20 @container">
         {/* Intro Grid Title */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start mb-16 md:mb-24">
-          <div className="md:col-span-8 flex flex-col items-start text-left">
-            <span className="text-[10px] font-mono tracking-widest text-muted-foreground uppercase mb-4 block">
+        <div className="mb-16 grid grid-cols-1 items-start gap-8 md:mb-24 md:grid-cols-12 md:gap-12">
+          <div className="flex flex-col items-start text-left md:col-span-8">
+            <span className="mb-4 block font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
               {"// TECHNICAL SKILLS & TOOLKIT"}
             </span>
-            <h2 className="font-sans text-4xl md:text-5xl font-bold  leading-[1.1] tracking-tight uppercase select-none">
+
+            <h2 className="font-sans text-4xl leading-[1.1] font-bold tracking-tight uppercase select-none md:text-5xl">
               <span className="text-primary">SKILLS &amp; TOOLS</span>{" "}
               <span className="text-foreground">
                 TO BUILD, DESIGN, AND SHIP GREAT PRODUCTS
@@ -88,8 +117,8 @@ async function SkillsSection() {
             </h2>
           </div>
 
-          <div className="md:col-span-4 flex flex-col justify-end text-left pt-2 md:pt-14 font-sans">
-            <p className="text-sm font-light text-muted-foreground leading-relaxed max-w-sm">
+          <div className="flex flex-col justify-end pt-2 text-left font-sans md:col-span-4 md:pt-14">
+            <p className="max-w-sm text-sm leading-relaxed font-light text-muted-foreground">
               A curated set of technologies and practices I use every day — from
               frontend frameworks and CMS tooling to databases, version control,
               and the soft skills that keep collaboration smooth.
