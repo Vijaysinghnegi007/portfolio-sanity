@@ -1,4 +1,3 @@
-import type { SKILLS_QUERY_RESULT } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/live";
 import { SKILLS_QUERY } from "@/sanity/lib/queries";
 import {
@@ -44,8 +43,6 @@ const CATEGORY_META: Record<string, { label: string; description: string }> = {
   },
 };
 
-type Skill = SKILLS_QUERY_RESULT[number];
-
 async function SkillsSection() {
   const { data: skills } = await sanityFetch({
     query: SKILLS_QUERY,
@@ -57,24 +54,29 @@ async function SkillsSection() {
 
   /*
    * Sanity Live can return StegaString values.
-   * Convert the values we use for grouping into normal strings
-   * before passing them into our local data structure.
+   * We only keep the fields required by SkillsAccordion,
+   * so there is no need to pass the complete Sanity object around.
    */
-  const grouped = new Map<string, Skill[]>();
+  const grouped = new Map<
+    string,
+    Array<{
+      name: string;
+      percentage: number | undefined;
+      color: string | undefined;
+    }>
+  >();
 
   for (const skill of skills) {
     const category = String(skill.category ?? "other");
 
-    const normalizedSkill: Skill = {
-      ...skill,
-      category: category as Skill["category"],
-      name: skill.name ? String(skill.name) : null,
-      color: skill.color ? String(skill.color) : null,
-    };
-
     const bucket = grouped.get(category) ?? [];
 
-    bucket.push(normalizedSkill);
+    bucket.push({
+      name: skill.name ? String(skill.name) : "",
+      percentage: skill.percentage ?? undefined,
+      color: skill.color ? String(skill.color) : undefined,
+    });
+
     grouped.set(category, bucket);
   }
 
@@ -86,12 +88,7 @@ async function SkillsSection() {
         id: String(index + 1).padStart(2, "0"),
         title: meta.label,
         description: meta.description,
-
-        skills: items.map((skill) => ({
-          name: skill.name ?? "",
-          percentage: skill.percentage ?? undefined,
-          color: skill.color ?? undefined,
-        })),
+        skills: items,
       };
     },
   );
